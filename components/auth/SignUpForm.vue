@@ -1,4 +1,5 @@
 <template>
+<div>
   <form>
     <p>
       <p>First name</p>
@@ -41,32 +42,35 @@
       <input name="confirmPassword" type="password" v-model="confirmPassword" :style="confirmPasswordValidationStyle">
     </p>
   </form>
+  <input type="button" @click="$emit('changeMode')" value="Login">
+  <input type="button" @click="sendForm" value="SignUp">
+</div>
 </template>
 
 <script>
 import Vue from "vue"
 export default {
   data: () => ({
-    firstname: "",
+    firstname: "Alice",
     firstnameValidationStyle: {
       color: "black"
     },
-    lastname: "",
+    lastname: "Miller",
     lastnameValidationStyle: {
       color: "black"
     },
-    nationality: "",
-    email: "",
+    nationality: "American",
+    email: "alice.miller@yahoo.com",
     emailValidationStyle: {
       color: "black"
     },
-    dateOfBirth: "",
-    gender: "",
-    password: "",
+    dateOfBirth: "1997-12-21",
+    gender: "Female",
+    password: "Password1",
     passwordValidationStyle: {
       color: "black"
     },
-    confirmPassword: "",
+    confirmPassword: "Password1",
     confirmPasswordValidationStyle: {
       color: "black"
     }
@@ -128,6 +132,17 @@ export default {
       } else {
         this.confirmPasswordValidationStyle.color ="red"
       }
+    },
+    sendForm() {
+      this.$emit("sendForm", {
+        firstname: this.firstname,
+        lastname: this.lastname,
+        nationality: this.nationality,
+        email: this.email,
+        dateOfBirth: this.dateOfBirth,
+        gender: this.gender,
+        password: this.password
+      })
     }
   }
 }

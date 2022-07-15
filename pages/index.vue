@@ -1,10 +1,8 @@
 <template>
   <div class="container">
     <AuthHeader :title="headerTitle" />
-    <SignUpComponent v-if="!loginMode" />
+    <SignUpComponent v-if="!loginMode" @changeMode="changeMode" @sendForm="sendForm"/>
     <LoginComponent v-else />
-    <input type="button" v-model="changeModeBtnTitle" @click="changeMode">
-    <input type="button" value="SignUp" @click="sendForm">
   </div>
 </template>
 
@@ -30,15 +28,14 @@ export default {
       if (!this.loginMode) {
         this.headerTitle = "Login"
         this.loginMode = true
-        this.changeModeBtnTitle = "SignUp"
       } else {
         this.headerTitle = "SignUp"
         this.loginMode = false
-        this.changeModeBtnTitle = "Login"
       }
     },
-    sendForm() {
-      console.log("send")
+    sendForm(value) {
+      this.$store.dispatch("setEmail", value.email)
+      console.log(this.$store.state.email)
     }
   }
 }
