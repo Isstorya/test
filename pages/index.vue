@@ -1,8 +1,13 @@
 <template>
   <div class="container">
     <AuthHeader :title="headerTitle" />
-    <SignUpComponent v-if="!loginMode" @changeMode="changeMode" @sendForm="sendForm"/>
-    <LoginComponent v-else />
+    <div class="authSuccess" v-if="$store.state.email">
+      Success
+    </div>
+    <div class="auth" v-else>
+      <SignUpComponent v-if="!loginMode" @changeMode="changeMode" @sendForm="sendForm"/>
+      <LoginComponent v-else @changeMode="changeMode" @sendLoginForm="sendLoginForm"/>
+    </div>
   </div>
 </template>
 
@@ -35,6 +40,17 @@ export default {
     },
     async sendForm(value) {
       await this.$axios.$post("/api/auth/signup",value)
+      .then((req,res) => {
+        this.$store.dispatch("setEmail", res.email)
+      })
+      .catch((req,res) => {
+        console.log(res)
+        this.$store.dispatch("setEmail", value.email)
+      })
+      console.log(this.$store.state.email)
+    },
+    async sendLoginForm(value) {
+      await this.$axios.$post("/api/auth/login",value)
       .then((req,res) => {
         this.$store.dispatch("setEmail", res.email)
       })

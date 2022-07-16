@@ -53,26 +53,26 @@ export default {
   data: () => ({
     firstname: "Alice",
     firstnameValidationStyle: {
-      color: "black"
+      color: "#111111"
     },
     lastname: "Miller",
     lastnameValidationStyle: {
-      color: "black"
+      color: "#111111"
     },
     nationality: "American",
     email: "alice.miller@yahoo.com",
     emailValidationStyle: {
-      color: "black"
+      color: "#111111"
     },
     dateOfBirth: "1997-12-21",
     gender: "Female",
     password: "Password1",
     passwordValidationStyle: {
-      color: "black"
+      color: "#111111"
     },
     confirmPassword: "Password1",
     confirmPasswordValidationStyle: {
-      color: "black"
+      color: "#111111"
     }
   }),
   watch: {
@@ -100,37 +100,37 @@ export default {
   methods: {
     validateFirstname(value){
       if(new RegExp("^[a-zA-Z]{1,}$").test(value)) {
-        this.firstnameValidationStyle.color = "black"
+        this.firstnameValidationStyle.color = "#111111"
       } else {
-        this.firstnameValidationStyle.color = "red"
+        this.firstnameValidationStyle.color = "#eb4137"
       }
     },
     validateLastname(value){
       if(new RegExp("^[a-zA-Z]{1,}$").test(value)) {
-        this.lastnameValidationStyle.color = "black"
+        this.lastnameValidationStyle.color = "#111111"
       } else {
-        this.lastnameValidationStyle.color = "red"
+        this.lastnameValidationStyle.color = "#eb4137"
       }
     },
     validateEmail(value) {
       if(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]/g.test(value)) {
-        this.emailValidationStyle.color = "black"
+        this.emailValidationStyle.color = "#111111"
       } else {
-        this.emailValidationStyle.color = "red"
+        this.emailValidationStyle.color = "#eb4137"
       }
     },
     validatePassword(value) {
       if(new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})").test(value)) {
-        this.passwordValidationStyle.color = "black"
+        this.passwordValidationStyle.color = "#111111"
       } else {
-        this.passwordValidationStyle.color = "red"
+        this.passwordValidationStyle.color = "#eb4137"
       }
     },
     validateConfirmPassword(value) {
       if(this.password == this.confirmPassword) {
-        this.confirmPasswordValidationStyle.color = "black"
+        this.confirmPasswordValidationStyle.color = "#111111"
       } else {
-        this.confirmPasswordValidationStyle.color ="red"
+        this.confirmPasswordValidationStyle.color ="#eb4137"
       }
     },
     sendForm() {
