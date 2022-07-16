@@ -1,14 +1,14 @@
 <template>
 	<div class="container">
-		<AuthHeader :title="headerTitle" />
-		<div class="authSuccess" v-if="$store.state.email">Success</div>
+		<auth-header :title="headerTitle" />
+		<auth-success-component v-if="$store.state.email" />
 		<div class="auth" v-else>
-			<SignUpComponent
+			<sign-up-component
 				v-if="!loginMode"
 				@changeMode="changeMode"
 				@sendForm="sendForm"
 			/>
-			<LoginComponent
+			<login-component
 				v-else
 				@changeMode="changeMode"
 				@sendLoginForm="sendLoginForm"
@@ -19,6 +19,7 @@
 
 <script>
 import AuthHeader from "../components/AuthHeader.vue";
+import AuthSuccessComponent from "../components/AuthSuccessComponent.vue";
 import SignUpComponent from "../components/auth/SignUpComponent.vue";
 import LoginComponent from "../components/auth/LoginComponent.vue";
 
@@ -32,6 +33,7 @@ export default {
 		AuthHeader,
 		SignUpComponent,
 		LoginComponent,
+		AuthSuccessComponent,
 	},
 	methods: {
 		changeMode() {
@@ -72,13 +74,30 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&family=Work+Sans&display=swap");
 * {
 	margin: 0;
 	padding: 0;
 }
 .container {
+	display: flex;
+	justify-content: flex-start;
 	max-width: 665px;
 	min-width: 320px;
 	height: 480px;
+	margin: 0 auto;
+}
+@media screen and (max-width: 642px) {
+	.container {
+		display: block;
+	}
+	header {
+		width: 100%;
+		height: 20%;
+	}
+	header p {
+		margin-top: 0;
+		transform: none;
+	}
 }
 </style>
