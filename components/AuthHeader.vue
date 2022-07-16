@@ -15,3 +15,10 @@ export default {
   data: () => ({})
 }
 </script>
+
+<style>
+header {
+  background-color: #5a61e5;
+  width: 100vw;
+}
+</style>
