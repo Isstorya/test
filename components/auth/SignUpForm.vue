@@ -24,7 +24,7 @@
     </p>
     <p>
       <p>Date of Birth</p>
-      <input name="dateOfBirth" type="date"v-model="dateOfBirth">
+      <input name="dateOfBirth" type="date" v-model="dateOfBirth">
     </p>
     <p>
       <p>Gender</p>
