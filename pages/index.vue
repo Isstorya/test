@@ -33,8 +33,15 @@ export default {
         this.loginMode = false
       }
     },
-    sendForm(value) {
-      this.$store.dispatch("setEmail", value.email)
+    async sendForm(value) {
+      await this.$axios.$post("/api/auth/signup",value)
+      .then((req,res) => {
+        this.$store.dispatch("setEmail", res.email)
+      })
+      .catch((req,res) => {
+        console.log(res)
+        this.$store.dispatch("setEmail", value.email)
+      })
       console.log(this.$store.state.email)
     }
   }
